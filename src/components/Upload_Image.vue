@@ -16,12 +16,17 @@
       </div>
 
      <div id="results" v-if="showResults">
-       <h3> {{this.defectName}} </h3>
        <button @click="goToUploadMode" type="button-basic" name="goToUpload">Upload Different Image</button>
+       <h3> {{this.defectName}} </h3>
+       <button @click="goToDefect" type="button-basic" name="defectBtn">Defect Images</button>
        <div id="resImagePreview">
-         <h1> Image Preview </h1>
-         <!-- <img :src="'0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG'"> -->
-         <img :src="getResImgUrl()">
+         <h1> Results Preview </h1>
+         <!-- <img src="0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG"> -->
+         <!-- <img :src="getResImgUrl()"> -->
+
+         <!-- <img v-if="resImgPath" :src="require('@/assets/images/Trimmed_Crop_Images/' + this.resImgPath + '.jpg')"> -->
+         <img v-if="resImgPath" :src="require('@/assets/images/(6)' + '.jpg')">
+
        </div>
      </div>
 
@@ -32,17 +37,6 @@
   body {
   background-color: var(--cl_background);
   }
-
-  /* button {
-  background-color: var(--cl_secondary);
-  border: 3px solid black;
-  color: var(--cl_text);
-  padding: 1em 1.5em;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.25em;
-  display: inline-block;
-  width: 15%; /* to test the test-align property */
 
   button{
   	background:linear-gradient(to bottom, var(--cl_secondary) 5%, #408c99 100%);
@@ -58,7 +52,6 @@
   	text-decoration:none;
   	text-shadow:0px 1px 0px #3d768a;
   }
-
 
 #app {
   padding: 20px;
@@ -85,16 +78,11 @@
       apiUrlBase: 'http://127.0.0.1:5000/',
       selectedFile: null,
       imageUrl: null,
-      resImageUrl: "'0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG'",
       uploadMode: true,
       showImagePrev: false,
       showResults: false,
       defectName : "Unknown",
-      // images: {
-      //   // sample: require('src/assets/images/Crop_Images/0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG')
-      //   sample: require('src/components/0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.jpg')
-      //
-      // }
+      resImgPath : null
     }
   },
   methods: {
@@ -108,9 +96,8 @@
       this.showImagePrev = true
       this.showResults = false
     },
-    getResImgUrl(){
-      var images = require.context('../assets/images/', false, /\.jpg$/)
-      return images('./' + "0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1" + ".jpg")
+    goToDefect(){
+      this.$router.push({path: "/Defect", query: {defectName: this.defectName}})
     },
     onUpload(){
       const fd = new FormData();
@@ -129,8 +116,8 @@
           this.showImagePrev = false
           this.uploadMode = false
           this.showResults = true
-
           this.defectName = res["data"]["className"]
+          this.resImgPath = this.defectName + "/(6)"
         })
         .catch((err) => {
           return new Error(err.message)

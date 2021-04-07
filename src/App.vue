@@ -8,7 +8,7 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item href="#">Link</b-nav-item>
+            <b-nav-item @click="rt_UploadImage">Upload Image</b-nav-item>
             <b-nav-item href="#" disabled>Disabled</b-nav-item>
           </b-navbar-nav>
 
@@ -45,7 +45,12 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    rt_UploadImage(){
+      this.$router.push({path: "/Upload_Image"})
+    }
+  }
 }
 </script>
 
