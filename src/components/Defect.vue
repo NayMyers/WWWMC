@@ -2,10 +2,12 @@
   <div class="defect_main">
     <div>
       <h1>This is the Defect page for {{ this.defectName }}</h1>
+      <h3>Below are some example images of the defect</h3>
+
     </div>
     <div v-for="i in 5" >
-    <img :src="defectImage(i)">
     <h4>{{i}}</h4>
+    <img :src="defectImage(i)">
     </div>
   </div>
 </template>
