@@ -3,8 +3,9 @@
     <div>
       <h1>This is the Defect page for {{ this.defectName }}</h1>
     </div>
-    <div>
-    <img :src="defectImage">
+    <div v-for="i in 5" >
+    <img :src="defectImage(i)">
+    <h4>{{i}}</h4>
     </div>
   </div>
 </template>
@@ -19,14 +20,19 @@ export default {
     }
   },
   methods: {
+      defectImage(imageNo){
+        var defectNo = null
+        if(typeof(imageNo) == "number"){
+          defectNo = imageNo.toString()
+        }else{
+          defectNo = this.defectNo
+        }
+        return require(`@/assets/images/Trimmed_Crop_Images/${this.defectName}/${defectNo}.jpg`)
+      }
 
   },
   computed:{
-    defectImage(){
-      const defectNo = '2'
-      const defecto = this.defectName
-      return require(`@/assets/images/Trimmed_Crop_Images/${this.defectName}/${defectNo}.jpg`)
-    }
+
   }
 }
 </script>

@@ -120,8 +120,9 @@
           this.resImgPath = this.defectName + "/(6)"
         })
         .catch((err) => {
-          return new Error(err.message)
           this.$router.push({path: "/Error"})
+          return new Error(err.message)
+
 
         })
     },
