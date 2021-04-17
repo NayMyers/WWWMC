@@ -17,15 +17,15 @@
 
      <div id="results" v-if="showResults">
        <button @click="goToUploadMode" type="button-basic" name="goToUpload">Upload Different Image</button>
+       <h3> We think the plant and defect is: </h3>
        <h3> {{this.defectName}} </h3>
        <button @click="goToDefect" type="button-basic" name="defectBtn">Defect Images</button>
        <div id="resImagePreview">
-         <h1> Results Preview </h1>
          <!-- <img src="0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG"> -->
          <!-- <img :src="getResImgUrl()"> -->
 
          <!-- <img v-if="resImgPath" :src="require('@/assets/images/Trimmed_Crop_Images/' + this.resImgPath + '.jpg')"> -->
-         <img v-if="resImgPath" :src="require('@/assets/images/(6)' + '.jpg')">
+         <!-- <img v-if="resImgPath" :src="require('@/assets/images/(6)' + '.jpg')"> -->
 
        </div>
      </div>
@@ -121,6 +121,8 @@
         })
         .catch((err) => {
           return new Error(err.message)
+          this.$router.push({path: "/Error"})
+
         })
     },
     goToUploadMode(){
