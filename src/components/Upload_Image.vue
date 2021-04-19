@@ -8,6 +8,11 @@
         <div>
           <button @click="onUpload" type="button-basic" name="button">Upload</button>
           <button @click="testAPIRes" type="button" name="button">Test API res</button>
+          <div v-if="awaitingResponse">
+            <h3> Please Wait </h3>
+            <h3> Your image is being analysed </h3>
+          </div>
+
         </div>
         <div v-if="showImagePrev" id="preview">
           <h1> Image Preview </h1>
@@ -80,6 +85,7 @@
       imageUrl: null,
       uploadMode: true,
       showImagePrev: false,
+      awaitingResponse: false,
       showResults: false,
       defectName : "Unknown",
       resImgPath : null
@@ -106,13 +112,15 @@
       console.log("THIS SELECTED FILE = ")
       console.log(this.selectedFile)
       console.log(fd)
-      axios.put('http://127.0.0.1:5000/upload_image', fd,{
+      axios.put('http://104.236.43.188/upload_image', fd,{
           onUploadProgress: uploadEvent => {
+            this.awaitingResponse = true
             console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%')
           }
       })
         .then(res =>{
           console.log(res)
+          this.awaitingResponse = false
           this.showImagePrev = false
           this.uploadMode = false
           this.showResults = true
@@ -131,7 +139,7 @@
       this.showResults=false
     },
     testAPIRes(){
-      axios.post('http://127.0.0.1:5000/hello_world/helloworld')
+      axios.post('http://104.236.43.188/hello_world/helloworld')
           .then(res =>{
             console.log(res)
 

@@ -4,12 +4,13 @@
       <h1>This is the Defect page for {{ this.defectName }}</h1>
       <h3>Below are some example images of the defect</h3>
 
-    </div>
+    </div :key="defectName">
     <div v-for="i in 5" >
     <h4>{{i}}</h4>
-    <img :src="defectImage(i)">
+    <img :key="defectName" :src="defectImage(i)">
     </div>
   </div>
+
 </template>
 
 <script>
@@ -34,7 +35,6 @@ export default {
 
   },
   computed:{
-
   }
 }
 </script>
