@@ -1,15 +1,17 @@
 <template>
-  <div class="defect_main">
+  <div class="defect_main" :key="defectName">
+    <router-view :key="$route.fullPath"></router-view>
     <div>
       <h1>This is the Defect page for {{ this.defectName }}</h1>
       <h3>Below are some example images of the defect</h3>
 
-    </div>
+    </div :key="$route.fullPath">
     <div v-for="i in 5" >
     <h4>{{i}}</h4>
     <img :src="defectImage(i)">
     </div>
   </div>
+
 </template>
 
 <script>
@@ -33,8 +35,13 @@ export default {
       }
 
   },
+  watch:{
+  },
   computed:{
 
+  },
+  updated(){
+    console.log('updated')
   }
 }
 </script>
