@@ -2,12 +2,12 @@
   <div>
 
      <div id="upload" v-if="uploadMode">
-       <h2> Choose File And Upload </h2>
+       <h2> Choose Image And Upload </h2>
         <input type="file" ref="fileChoose" name="fileInput" value="Select File" @change="onFileSelected" style="display: none">
-        <button @click="$refs.fileChoose.click()"> Choose File </button>
+        <button @click="$refs.fileChoose.click()"> Choose Image </button>
         <div>
           <button @click="onUpload" type="button-basic" name="button">Upload</button>
-          <button @click="testAPIRes" type="button" name="button">Test API res</button>
+          <!-- <button @click="testAPIRes" type="button" name="button">Test API res</button> -->
           <div v-if="awaitingResponse">
             <h3> Please Wait </h3>
             <h3> Your image is being analysed </h3>

@@ -6,7 +6,7 @@
       <h3>Below are some example images of the defect</h3>
 
     </div :key="$route.fullPath">
-    <div v-for="i in 5" >
+    <div v-for="i in 50" >
     <h4>{{i}}</h4>
     <img :src="defectImage(i)">
     </div>
@@ -16,6 +16,8 @@
 
 <script>
 require.context('../assets/images/Trimmed_Crop_Images', true, /\.jpg$/)
+// require.context('http://178.62.60.223/static/', true, /\.jpg$/)
+const imagePathBase = "http://178.62.60.223/static/"
 export default {
   name: 'Defect',
   data () {
@@ -31,7 +33,9 @@ export default {
         }else{
           defectNo = this.defectNo
         }
-        return require(`@/assets/images/Trimmed_Crop_Images/${this.defectName}/${defectNo}.jpg`)
+        // return require(`http://178.62.60.223/static/${this.defectName}/${defectNo}.jpg`)
+        return imagePathBase+this.defectName+"/"+defectNo+".jpg"
+
       }
 
   },

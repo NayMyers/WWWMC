@@ -5,6 +5,7 @@ import Upload_Image from '@/components/Upload_Image'
 import Defect from '@/components/Defect'
 import Error from '@/components/Error'
 import Test from '@/components/Test'
+import Instructions from '@/components/Instructions'
 import Axios from 'axios';
 
 
@@ -37,7 +38,12 @@ export default new Router({
     {
       path:'/Error',
       name:'Error',
-      comonent: Error
+      component: Error
+    },
+    {
+      path:'/Instructions',
+      name:'Instructions',
+      component: Instructions
     }
   ]
 })

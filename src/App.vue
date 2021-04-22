@@ -12,6 +12,12 @@
             <b-nav-item @click="rt_UploadImage">Upload Image</b-nav-item>
           </b-navbar-nav>
 
+          <b-navbar-nav>
+            <b-nav-item>
+              <router-link to="/Instructions">Instructions</router-link>
+            </b-nav-item>
+          </b-navbar-nav>
+
           <b-navbar-nav left>
             <b-nav-item-dropdown text="Defect Gallery" left>
               <!-- <b-dropdown-item v-for="(cls,defect) in classes" @click="rt_Defect(defect)" left> -->
