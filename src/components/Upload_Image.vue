@@ -80,12 +80,13 @@
 </style>
 
 <script>
+// Production API 104.236.43.188
+  const apiUrlBase= "http://127.0.0.1:5000/"
   const axios = require('axios')
   export default {
     name: 'firstroute',
     data () {
       return {
-      apiUrlBase: 'http://127.0.0.1:5000/',
       selectedFile: null,
       imageUrl: null,
       uploadMode: true,
@@ -117,7 +118,7 @@
       console.log("THIS SELECTED FILE = ")
       console.log(this.selectedFile)
       console.log(fd)
-      axios.put('http://104.236.43.188/upload_image', fd,{
+      axios.put(apiUrlBase + 'upload_image', fd,{
           onUploadProgress: uploadEvent => {
             this.awaitingResponse = true
             console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%')
@@ -144,7 +145,7 @@
       this.showResults=false
     },
     testAPIRes(){
-      axios.post('http://104.236.43.188/hello_world/helloworld')
+      axios.post(apiUrlBase + 'hello_world/helloworld')
           .then(res =>{
             console.log(res)
 
