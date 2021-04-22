@@ -12,11 +12,16 @@
             <h3> Please Wait </h3>
             <h3> Your image is being analysed </h3>
           </div>
-
         </div>
-        <div v-if="showImagePrev" id="preview">
+
+        <div v-if="showImagePrev">
           <h1> Image Preview </h1>
-          <img v-if="imageUrl" :src="imageUrl">
+        </div>
+
+        <div v-if="showImagePrev" id="preview">
+          <div>
+            <img v-if="imageUrl" :src="imageUrl">
+          </div>
         </div>
       </div>
 
