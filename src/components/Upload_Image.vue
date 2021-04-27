@@ -136,8 +136,6 @@
         .catch((err) => {
           this.$router.push({path: "/Error"})
           return new Error(err.message)
-
-
         })
     },
     goToUploadMode(){

@@ -13,21 +13,25 @@
           </b-navbar-nav>
 
           <b-navbar-nav>
-            <b-nav-item>
-              <router-link to="/Instructions">Instructions</router-link>
-            </b-nav-item>
+            <b-nav-item @click="rt_Instructions">Instructions</b-nav-item>
           </b-navbar-nav>
 
           <b-navbar-nav left>
             <b-nav-item-dropdown text="Defect Gallery" left>
-              <!-- <b-dropdown-item v-for="(cls,defect) in classes" @click="rt_Defect(defect)" left> -->
               <b-dropdown-item v-for="(cls,defect) in classes" @click="rt_Defect(defect)" left>
-
                 <router-link to="`/Defect/defect`">{{defect}}</router-link>
               </b-dropdown-item>
             </b-nav-item-dropdown>
-
           </b-navbar-nav>
+
+          <b-navbar-nav left>
+            <b-nav-item-dropdown text="Recourse And Prevention" left>
+              <b-dropdown-item v-for="(cls,defect) in classes" @click="rt_RecourseAndPrevention(defect)" left>
+                <router-link to="`/RecourseAndPrevention/defect`">{{defect}}</router-link>
+              </b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+
         </b-collapse>
       </b-navbar>
     </div>
@@ -50,8 +54,14 @@ export default {
     rt_UploadImage(){
       this.$router.push({path: "/Upload_Image"})
     },
-    rt_Defect(defect_name){
-      this.$router.push({path: "/Defect", query: {defectName: defect_name}})
+    rt_Defect(_defectName){
+      this.$router.push({path: "/Defect", query: {defectName: _defectName}})
+    },
+    rt_RecourseAndPrevention(_defectName){
+      this.$router.push({path: "/RecourseAndPrevention", query: {defectName: _defectName}})
+    },
+    rt_Instructions(){
+      this.$router.push({path: "/Instructions"})
     },
   },
   computed:{

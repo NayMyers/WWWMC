@@ -10,8 +10,8 @@
     <h4>{{i}}</h4>
     <img :src="defectImage(i)">
     </div>
-  </div>
 
+  </div>
 </template>
 
 <script>
@@ -37,12 +37,6 @@ export default {
         return imagePathBase+this.defectName+"/"+defectNo+".jpg"
 
       }
-
-  },
-  watch:{
-  },
-  computed:{
-
   },
   updated(){
     console.log('updated')
