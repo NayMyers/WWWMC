@@ -1,16 +1,41 @@
 <template>
   <div class="defect_main" :key="defectName">
     <div>
-      <h1>This is the Recourse and Prevention page for:</h1>
-      <h1>{{this.defectName}}</h1>
-      <h3>Recourse Text</h3>
-      <!-- <h3>{{this.recourseText}}</h3> -->
+      <div class="headingMessage">
+        <h1>This is the Recourse and Prevention page for:</h1>
+        <h1>{{this.defectName}}</h1>
+      </div>
+
+
+      <div class="row">
+        <div key="recourseText" class="column" left>
+          <h3>Recourse Information</h3>
+          <h4>{{this.recourseText}}</h4>
+        </div>
+
+        <div key="preventionText" class="column">
+          <h3>Prvention Information</h3>
+          <h4>{{this.preventionText}}</h4>
+        </div>
+      </div>
+
      <button @click="getRecourseAndPreventionInfo" type="button-basic" name="defectBtn">Recourse Info</button>
 
     </div>
   </div>
 
 </template>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  .row {
+  display: flex;
+  }
+
+  .column {
+  flex: 50%;
+}
+</style>
 
 <script>
 // const infoPathBase = "http://178.62.60.223/static/"
@@ -35,8 +60,9 @@ export default {
         })
           .then(res =>{
             console.log(res)
-            this.recourseText = res["recourse"]
-            this.preventionText = res["prevention"]
+            this.recourseText = res["data"]["recourse"]
+            this.preventionText = res["data"]["prevention"]
+            console.log(this.recourseText)
           })
           .catch((err) => {
             //this seems bad to do!
@@ -50,8 +76,3 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
