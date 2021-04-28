@@ -3,6 +3,7 @@
 
      <div id="upload" v-if="uploadMode">
        <h2> Choose Image And Upload </h2>
+       <h4>Please note. Only .png and .jpg files are supported (see instructions for more info)</h4>
         <input type="file" ref="fileChoose" name="fileInput" value="Select File" @change="onFileSelected" style="display: none">
         <button @click="$refs.fileChoose.click()"> Choose Image </button>
         <div>
@@ -31,11 +32,6 @@
        <h3> {{this.defectName}} </h3>
        <button @click="goToDefect" type="button-basic" name="defectBtn">Defect Images</button>
        <div id="resImagePreview">
-         <!-- <img src="0a5e9323-dbad-432d-ac58-d291718345d9___FREC_Scab 3417_1.JPG"> -->
-         <!-- <img :src="getResImgUrl()"> -->
-
-         <!-- <img v-if="resImgPath" :src="require('@/assets/images/Trimmed_Crop_Images/' + this.resImgPath + '.jpg')"> -->
-         <!-- <img v-if="resImgPath" :src="require('@/assets/images/(6)' + '.jpg')"> -->
 
        </div>
      </div>
