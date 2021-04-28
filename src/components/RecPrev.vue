@@ -19,8 +19,6 @@
         </div>
       </div>
 
-     <button @click="getRecourseAndPreventionInfo" type="button-basic" name="defectBtn">Recourse Info</button>
-
     </div>
   </div>
 
@@ -62,7 +60,6 @@ export default {
             console.log(res)
             this.recourseText = res["data"]["recourse"]
             this.preventionText = res["data"]["prevention"]
-            console.log(this.recourseText)
           })
           .catch((err) => {
             //this seems bad to do!
@@ -73,6 +70,9 @@ export default {
   },
   updated(){
     console.log('updated')
+  },
+  beforeMount(){
+    this.getRecourseAndPreventionInfo()
   }
 }
 </script>

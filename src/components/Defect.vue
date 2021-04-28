@@ -15,7 +15,7 @@
 </template>
 
 <script>
-require.context('../assets/images/Trimmed_Crop_Images', true, /\.jpg$/)
+// require.context('../assets/images/Trimmed_Crop_Images', true, /\.jpg$/)
 // require.context('http://178.62.60.223/static/', true, /\.jpg$/)
 const imagePathBase = "http://178.62.60.223/static/"
 export default {
