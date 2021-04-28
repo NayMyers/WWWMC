@@ -18,6 +18,10 @@
           <h4>{{this.preventionText}}</h4>
         </div>
       </div>
+    </div>
+
+    <div class="cropClasses">
+      <li v-for="number, cropName in classes">{{cropName}}</li>
 
     </div>
   </div>
@@ -31,7 +35,7 @@
   }
 
   .column {
-  flex: 50%;
+  flex: 30%;
 }
 </style>
 
@@ -45,14 +49,13 @@ export default {
     return {
       defectName: this.$route.query.defectName,
       recourseText: null,
-      preventionText: null
+      preventionText: null,
     }
   },
   methods: {
       getRecourseAndPreventionInfo(){
         axios.get(apiUrlBase + 'recourse/'+this.defectName,{
             onUploadProgress: uploadEvent => {
-              this.awaitingResponse = true
               console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%')
             }
         })

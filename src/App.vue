@@ -41,14 +41,15 @@
 </template>
 
 <script>
-import cropClasses from '@/assets/cropClasses.json'
+const axios = require('axios')
+// Production API 104.236.43.188
+const apiUrlBase= "http://127.0.0.1:5000/"
 export default {
   name: 'App',
   data () {
     return{
-      classes: cropClasses
+      classes: null
     }
-
   },
   methods: {
     rt_UploadImage(){
@@ -63,9 +64,26 @@ export default {
     rt_Instructions(){
       this.$router.push({path: "/Instructions"})
     },
+    getCropClasses(){
+        axios.get(apiUrlBase + 'model_info',{
+            onUploadProgress: uploadEvent => {
+              this.awaitingResponse = true
+              console.log('Upload Progress: ' + Math.round(uploadEvent.loaded / uploadEvent.total * 100) + '%')
+            }
+        })
+          .then(res =>{
+            console.log(res)
+            this.classes = JSON.parse(res["data"])
+          })
+          .catch((err) => {
+            //bad practice
+            this.$router.push({path: "/Error"})
+            return new Error(err.message)
+        })
+      },
   },
-  computed:{
-
+  beforeMount(){
+    this.getCropClasses()
   }
 }
 </script>
