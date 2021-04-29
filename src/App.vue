@@ -43,6 +43,7 @@
 <script>
 const axios = require('axios')
 // Production API 104.236.43.188
+// const apiUrlBase = "http://127.0.0.1:5000/"
 const apiUrlBase= "http://104.236.43.188/"
 export default {
   name: 'App',

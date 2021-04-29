@@ -19,11 +19,10 @@
         </div>
       </div>
     </div>
-
-    <div class="cropClasses">
+    <!-- <div class="cropClasses">
       <li v-for="number, cropName in classes">{{cropName}}</li>
 
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -41,6 +40,7 @@
 
 <script>
 // const infoPathBase = "http://178.62.60.223/static/"
+// const apiUrlBase = "http://127.0.0.1:5000/"
 const apiUrlBase = "http://104.236.43.188/"
 const axios = require('axios')
 export default {
