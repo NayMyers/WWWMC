@@ -26,22 +26,62 @@
         </div>
       </div>
 
-     <div id="results" v-if="showResults">
+     <div id="results" v-if="showResults" class="results">
        <button @click="goToUploadMode" type="button-basic" name="goToUpload">Upload Different Image</button>
+      <div class="topDefect">
+
        <h3> We think the plant and defect is: </h3>
-       <h3> {{this.defectName}} </h3>
-       <button @click="goToDefect" type="button-basic" name="defectBtn">Defect Images</button>
-       <div id="resImagePreview">
+       <h4> {{this.defectName}} </h4>
+
+          <div class="centreInline">
+              <button oninvalid=""@click="goToDefect(defectName)" type="button-basic" name="defectBtn">Images</button>
+          </div>
+
+          <div class="centreInline">
+            <div class="smallButton">
+              <button oninvalid=""@click="goToRecourse(defectName)" type="button-basic" name="defectBtn">Recourse</button>
+            </div>
+          </div>
 
        </div>
-     </div>
+
+       <div class='otherMostLikeley'>
+         <h3>Other Most Likeley Defects:</h3>
+          <div v-for="className in topClassBarTopNames">
+            <h4>{{className}}</h4>
+            <div class="centreInline">
+              <button oninvalid=""@click="goToDefect(className)" type="button-basic" name="defectBtn">Images</button>
+            </div>
+            <div class="centreInline">
+                <button oninvalid=""@click="goToRecourse(className)" type="button-basic" name="defectBtn">Recourse</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
 
   </div>
 </template>
 
 <style>
+  .centreInline{
+    display:inline-block;
+  }
   body {
   background-color: var(--cl_background);
+  }
+  .smallButton{
+    font-size: 10px;
+  }
+  .otherMostLikeley{
+    margin-top: 25px;
+  }
+  .topDefect{
+    margin-top: 25px;
+  }
+
+  .results{
+    margin-top: 25px;
   }
 
   button{
@@ -54,7 +94,7 @@
   	font-family:Arial;
   	font-size:20px;
   	font-weight:bold;
-  	padding:13px 32px;
+  	padding:6px 20px;
   	text-decoration:none;
   	text-shadow:0px 1px 0px #3d768a;
   }
@@ -92,7 +132,9 @@ const apiUrlBase= "http://104.236.43.188/"
       awaitingResponse: false,
       showResults: false,
       defectName : "Unknown",
-      resImgPath : null
+      // topClasses : null,
+      topClassNames: null,
+      topClassBarTopNames: null,
     }
   },
   methods: {
@@ -106,8 +148,11 @@ const apiUrlBase= "http://104.236.43.188/"
       this.showImagePrev = true
       this.showResults = false
     },
-    goToDefect(){
-      this.$router.push({path: "/Defect", query: {defectName: this.defectName}})
+    goToDefect(_defectName){
+      this.$router.push({path: "/Defect", query: {defectName: _defectName}})
+    },
+    goToRecourse(_defectName){
+      this.$router.push({path: "/RecourseAndPrevention", query: {defectName: _defectName}})
     },
     onUpload(){
       const fd = new FormData();
@@ -129,11 +174,13 @@ const apiUrlBase= "http://104.236.43.188/"
           this.uploadMode = false
           this.showResults = true
           this.defectName = res["data"]["className"]
-          this.resImgPath = this.defectName + "/(6)"
+          this.topClassNames = res["data"]["topClassNames"]
+          this.topClassBarTopNames = this.topClassNames
+          this.topClassBarTopNames.shift()
         })
         .catch((err) => {
-          this.$router.push({path: "/Error"})
           return new Error(err.message)
+          // this.$router.push({path: "/Error", query: {errorMessage: err.message}})
         })
     },
     goToUploadMode(){

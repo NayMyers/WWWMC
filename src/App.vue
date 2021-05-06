@@ -16,6 +16,10 @@
             <b-nav-item @click="rt_Instructions">Instructions</b-nav-item>
           </b-navbar-nav>
 
+          <b-navbar-nav>
+            <b-nav-item @click="rt_About">About</b-nav-item>
+          </b-navbar-nav>
+
           <b-navbar-nav left>
             <b-nav-item-dropdown text="Defect Gallery" left>
               <b-dropdown-item v-for="(cls,defect) in classes" @click="rt_Defect(defect)" left>
@@ -64,6 +68,9 @@ export default {
     },
     rt_Instructions(){
       this.$router.push({path: "/Instructions"})
+    },
+    rt_About(){
+      this.$router.push({path: "/About"})
     },
     getCropClasses(){
         axios.get(apiUrlBase + 'model_info',{

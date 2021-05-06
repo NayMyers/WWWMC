@@ -7,6 +7,7 @@ import Error from '@/components/Error'
 import Test from '@/components/Test'
 import Instructions from '@/components/Instructions'
 import RecPrev from '@/components/RecPrev'
+import About from '@/components/About'
 import Axios from 'axios';
 
 
@@ -50,6 +51,11 @@ export default new Router({
       path:'/RecourseAndPrevention',
       name:'RecourseAndPrevention',
       component: RecPrev
+    },
+    {
+      path:'/About',
+      name:'About',
+      component: About
     }
   ]
 })
