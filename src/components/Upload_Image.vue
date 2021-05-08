@@ -33,22 +33,24 @@
        <h3> We think the plant and defect is: </h3>
        <h4> {{this.defectName}} </h4>
 
+       <h4> With {{this.classPercent}}% certainty</h4>
+
+
           <div class="centreInline">
               <button oninvalid=""@click="goToDefect(defectName)" type="button-basic" name="defectBtn">Images</button>
           </div>
 
           <div class="centreInline">
-            <div class="smallButton">
               <button oninvalid=""@click="goToRecourse(defectName)" type="button-basic" name="defectBtn">Recourse</button>
-            </div>
           </div>
 
        </div>
 
-       <div class='otherMostLikeley'>
+       <div class='otherMostLikeley' key="topClassBarTopNames">
          <h3>Other Most Likeley Defects:</h3>
-          <div v-for="className in topClassBarTopNames">
-            <h4>{{className}}</h4>
+          <div v-for="classNo in noOfClasses-1">
+            <h4>{{topClassBarTopNames[classNo-1]}}</h4>
+            <h4> With {{classesPercentBarTop[classNo-1]}}% certainty</h4>
             <div class="centreInline">
               <button oninvalid=""@click="goToDefect(className)" type="button-basic" name="defectBtn">Images</button>
             </div>
@@ -132,9 +134,13 @@ const apiUrlBase= "http://104.236.43.188/"
       awaitingResponse: false,
       showResults: false,
       defectName : "Unknown",
-      // topClasses : null,
+      topClasses : null,
       topClassNames: null,
       topClassBarTopNames: null,
+      classesPercent: null,
+      topClassPercent: null,
+      noOfClasses: null,
+
     }
   },
   methods: {
@@ -173,10 +179,16 @@ const apiUrlBase= "http://104.236.43.188/"
           this.showImagePrev = false
           this.uploadMode = false
           this.showResults = true
+          this.classesPercent = res["data"]["topClassesPercent"]
+          this.classPercent = this.classesPercent[0]
+          this.noOfClasses = this.classesPercent.length
           this.defectName = res["data"]["className"]
           this.topClassNames = res["data"]["topClassNames"]
           this.topClassBarTopNames = this.topClassNames
           this.topClassBarTopNames.shift()
+          this.classesPercentBarTop = this.classesPercent
+          this.classesPercentBarTop.shift()
+
         })
         .catch((err) => {
           return new Error(err.message)

@@ -40,8 +40,8 @@
 
 <script>
 // const infoPathBase = "http://178.62.60.223/static/"
-// const apiUrlBase = "http://127.0.0.1:5000/"
 const apiUrlBase = "http://104.236.43.188/"
+// const apiUrlBase = "http://127.0.0.1:5000/"
 const axios = require('axios')
 export default {
   name: 'Defect',
